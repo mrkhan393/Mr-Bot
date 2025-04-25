@@ -20,7 +20,7 @@ if not user_api_key:
 client = OpenAI(api_key=user_api_key)
 
 if "bot" not in st.session_state:
-    st.session_state.bot = ChatBotManager(client)
+    st.session_state.bot = ChatBotManager(client=client)
     st.session_state.username = username
     st.session_state.session_id = st.session_state.bot.start_session(username)
     
@@ -33,7 +33,7 @@ if st.button("Send"):
         st.warning("Please type something before sending!")
     
 chat = st.session_state.bot.sessions[st.session_state.session_id]
-for msg in chat.messages:
+for msg in chat["messages"]:
     with st.chat_message("user" if msg["sender"] == chat.username else "assistant"):
         st.markdown(msg["text"])
 
