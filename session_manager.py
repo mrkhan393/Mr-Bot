@@ -32,8 +32,8 @@ class UserSession:
     
 class ChatBotManager:
     def __init__(self, client):
-        self.sessions = {}
         self.client = client
+        self.sessions = {}
 
     def start_session(self, username):
         session = UserSession(username)
@@ -77,7 +77,7 @@ class ChatBotManager:
             print(f"\n Session Ended for {summary['user']}")
             print(f"Duration: {summary['duration']}")
             print("Chat Summary:")
-            for msg in summary["message"]:
+            for msg in summary.messages:
                 print(f"{msg['time']} - {msg['sender']}: {msg['text']}")
                 del self.sessions[session_id]
         else:
