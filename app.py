@@ -20,7 +20,7 @@ if not user_api_key:
 client = OpenAI(api_key=user_api_key)
 
 if "bot" not in st.session_state:
-    st.session_state.bot = ChatBotManager()
+    st.session_state.bot = ChatBotManager(client)
     st.session_state.username = username
     st.session_state.session_id = st.session_state.bot.start_session(username)
     
