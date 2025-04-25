@@ -43,3 +43,5 @@ if "session_id" in st.session_state and st.session_state.session_id is not None:
         st.session_state.bot.end_session(st.session_state.session_id)
         st.success("Chat session ended. Reload to start a new chat. Thank you for chatting!")
         st.stop()
+else:
+    st.warning("No active session. Please start a new session.")
