@@ -77,7 +77,7 @@ class ChatBotManager:
             print(f"\n Session Ended for {summary['user']}")
             print(f"Duration: {summary['duration']}")
             print("Chat Summary:")
-            for msg in summary.messages:
+            for msg in summary.message:
                 print(f"{msg['time']} - {msg['sender']}: {msg['text']}")
                 del self.sessions[session_id]
         else:
