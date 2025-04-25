@@ -71,7 +71,7 @@ class ChatBotManager:
         except Exception as e:
             return f"Error generating response: {str(e)}"
         
-     def end_session(self, session_id):
+    def end_session(self, session_id):
         if session_id in self.sessions:
             summary = self.sessions[session_id].get_summary()
             print(f"\n Session Ended for {summary['user']}")
