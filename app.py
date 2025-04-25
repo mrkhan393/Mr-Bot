@@ -33,7 +33,7 @@ if st.button("Send"):
         st.warning("Please type something before sending!")
     
 chat = st.session_state.bot.sessions[st.session_state.session_id]
-for msg in chat["messages"]:
+for msg in chat.messages:
     with st.chat_message("user" if msg["sender"] == chat.username else "assistant"):
         st.markdown(msg["text"])
 
