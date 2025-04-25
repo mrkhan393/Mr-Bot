@@ -34,7 +34,7 @@ if st.button("Send"):
     
 chat = st.session_state.bot.sessions[st.session_state.session_id]
 for msg in chat.messages:
-    with st.chat_message("user" if msg["sender"] == chat["username"] else "assistant"):
+    with st.chat_message("user" if msg["sender"] == chat.username else "assistant"):
         st.markdown(msg["text"])
 
 if st.button("End Chat"):
