@@ -77,11 +77,12 @@ class ChatBotManager:
             print(f"\n Session Ended for {summary['user']}")
             print(f"Duration: {summary['duration']}")
             print("Chat Summary:")
-            for msg in summary["message"]:
+            for msg in summary["messages"]:
                 print(f"{msg['time']} - {msg['sender']}: {msg['text']}")
-                del self.sessions[session_id]
+            del self.sessions[session_id]
         else:
-            print("Invalid Session ID.")
+            print("Invalid session ID.")
+
 
 
 
