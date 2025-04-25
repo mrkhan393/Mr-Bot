@@ -24,20 +24,22 @@ if "bot" not in st.session_state:
     st.session_state.username = username
     st.session_state.session_id = st.session_state.bot.start_session(username)
     
-user_input = st.text_input("You:", placeholder="Type your message here...")
 
-if st.button("Send"):
-    if user_input.strip():
-        st.session_state.bot.add_user_message(st.session_state.session_id, user_input)
-    else:
-        st.warning("Please type something before sending!")
+if "session_id" in st.session_state and st.session_state.session_id is not None:
+    user_input = st.text_input("You:", placeholder="Type your message here...")
     
-chat = st.session_state.bot.sessions[st.session_state.session_id]
-for msg in chat.messages:
-    with st.chat_message("user" if msg["sender"] == chat.username else "assistant"):
-        st.markdown(msg["text"])
-
-if st.button("End Chat"):
-    st.session_state.bot.end_session(st.session_state.session_id)
-    st.success("Chat session ended. Reload to start a new chat. Thank you for chatting!")
-    st.stop()
+    if st.button("Send"):
+        if user_input.strip():
+            st.session_state.bot.add_user_message(st.session_state.session_id, user_input)
+        else:
+            st.warning("Please type something before sending!")
+        
+    chat = st.session_state.bot.sessions[st.session_state.session_id]
+    for msg in chat.messages:
+        with st.chat_message("user" if msg["sender"] == chat.username else "assistant"):
+            st.markdown(msg["text"])
+    
+    if st.button("End Chat"):
+        st.session_state.bot.end_session(st.session_state.session_id)
+        st.success("Chat session ended. Reload to start a new chat. Thank you for chatting!")
+        st.stop()
