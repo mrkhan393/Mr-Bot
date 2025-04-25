@@ -31,8 +31,9 @@ class UserSession:
         }
     
 class ChatBotManager:
-    def __init__(self):
+    def __init__(self, client):
         self.sessions = {}
+        self.client = client
 
     def start_session(self, username):
         session = UserSession(username)
@@ -53,7 +54,7 @@ class ChatBotManager:
 
     def generate_response(self, session):
         from openai import OpenAI
-        client = OpenAI(api_key=openai.api_key)
+        client = self.client
         
         messages = [{"role": "system", "content": "You are a helpful assistant."}]
         for msg in session.messages:
